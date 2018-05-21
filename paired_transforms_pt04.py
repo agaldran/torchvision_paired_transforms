@@ -806,10 +806,11 @@ class ColorJitter(object):
         Returns:
             PIL Image: Color jittered image.
         """
-        if target is not None:
-            raise NotImplementedError("ColorJitter not implemented for image pairs.")
         transform = self.get_params(self.brightness, self.contrast,
                                     self.saturation, self.hue)
+
+        if target is not None:
+            return transform(img), target
         return transform(img)
 
     def __repr__(self):
@@ -1044,7 +1045,7 @@ class Grayscale(object):
             PIL Image: Randomly grayscaled image.
         """
         if target is not None:
-            raise NotImplementedError("Grayscale not implemented for image pairs.")
+            return F.to_grayscale(img, num_output_channels=self.num_output_channels), target
         return F.to_grayscale(img, num_output_channels=self.num_output_channels)
 
     def __repr__(self):
@@ -1076,11 +1077,12 @@ class RandomGrayscale(object):
         Returns:
             PIL Image: Randomly grayscaled image.
         """
-        if target is not None:
-            raise NotImplementedError("Grayscale not implemented for image pairs.")
         num_output_channels = 1 if img.mode == 'L' else 3
         if random.random() < self.p:
-            return F.to_grayscale(img, num_output_channels=num_output_channels)
+            if target is not None:
+                return F.to_grayscale(img, num_output_channels=num_output_channels), target
+        if target is not None:
+            return img, target
         return img
 
     def __repr__(self):
