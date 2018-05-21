@@ -29,7 +29,7 @@ This means that you can use this a plug-and-play extension, *e.g.* replacing:
 Retinal Image and associated ground-truth, useful for the task of classifying retinal 
 vessels into arteries and veins:
 
-![](original.png)
+![](images/original.png)
 
 Result of transforming them with standard `torchvision` code:
 ```
@@ -40,7 +40,7 @@ rotated_im = rotate_original(image)
 rotated_gt = rotate_original(gdt)
 imshow_pair(rotated_im, rotated_gt)
 ```
-![](unpaired_rot.png)
+![](images/unpaired_rot.png)
 
 Result of transforming them with extended transforms:
 ```
@@ -49,7 +49,7 @@ rotate_paired = p_tr.RandomRotation(degrees)
 rotated_pair = rotate_paired(image, gdt)
 imshow_pair(*rotated_pair)
 ```
-![](paired_rot.png)
+![](images/paired_rot.png)
 
 I will be posting here the analogous extension for `Pytorch 0.4` 
 later this week. 
