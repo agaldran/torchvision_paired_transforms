@@ -44,7 +44,12 @@ class Compose(object):
     def __init__(self, transforms):
         self.transforms = transforms
 
-    def __call__(self, img):
+    def __call__(self, img, target = None):
+        if target is not None:
+            for t in self.transforms:
+                img, target = t(img, target)
+            return img, target
+
         for t in self.transforms:
             img = t(img)
         return img
@@ -65,14 +70,17 @@ class ToTensor(object):
     [0, 255] to a torch.FloatTensor of shape (C x H x W) in the range [0.0, 1.0].
     """
 
-    def __call__(self, pic):
+    def __call__(self, pic, pic2=None):
         """
         Args:
             pic (PIL Image or numpy.ndarray): Image to be converted to tensor.
+            pic2 (PIL Image): (optional) Second image to be converted also.
 
         Returns:
-            Tensor: Converted image.
+            Tensor(s): Converted image(s).
         """
+        if pic2 is not None:
+            return F.to_tensor(pic), F.to_tensor(pic2)
         return F.to_tensor(pic)
 
     def __repr__(self):
@@ -98,7 +106,7 @@ class ToPILImage(object):
     def __init__(self, mode=None):
         self.mode = mode
 
-    def __call__(self, pic):
+    def __call__(self, pic, pic2=None):
         """
         Args:
             pic (Tensor or numpy.ndarray): Image to be converted to PIL Image.
@@ -107,6 +115,8 @@ class ToPILImage(object):
             PIL Image: Image converted to PIL Image.
 
         """
+        if pic2 is not None:
+            return F.to_pil_image(pic), F.to_pil_image(pic2)
         return F.to_pil_image(pic, self.mode)
 
     def __repr__(self):
