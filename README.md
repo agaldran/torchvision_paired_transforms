@@ -38,20 +38,20 @@ vessels into arteries and veins:
 
 Result of transforming them with standard `torchvision` code:
 ```
-from torchvision import transforms
+from torchvision import transforms as tr
 degrees=(0,180)
-rotate_original = transforms.RandomRotation(degrees)
-rotated_im = rotate_original(image)
-rotated_gt = rotate_original(gdt)
+rotate = tr.RandomRotation(degrees)
+rotated_im = rotate(image)
+rotated_gt = rotate(gdt)
 imshow_pair(rotated_im, rotated_gt)
 ```
 ![](images/unpaired_rot.png)
 
 Result of transforming them with extended transforms:
 ```
-import paired_transforms as p_tr
-rotate_paired = p_tr.RandomRotation(degrees)
-rotated_pair = rotate_paired(image, gdt)
+import paired_ransforms_pt04 as tr
+rotate = tr.RandomRotation(degrees)
+rotated_pair = rotate(image, gdt)
 imshow_pair(*rotated_pair)
 ```
 ![](images/paired_rot.png)
