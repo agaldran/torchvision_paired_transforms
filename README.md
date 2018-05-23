@@ -28,6 +28,7 @@ This means that you can use this as a plug-and-play extension, *e.g.* replacing:
  how the original implementation was modified, and `paired_transforms_examples_pytorch0.3.ipynb`, 
  `paired_transforms_examples_pytorch0.4.ipynb` for examples of all the transforms that were modified. I am also including 
 an example of how to build a `PyTorch` dataset and dataloader using paired transforms.
+
  Below you can find a visual example.
  
 ---------------------------------------
