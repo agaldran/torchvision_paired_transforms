@@ -481,7 +481,7 @@ class RandomHorizontalFlip(object):
 
         if target is not None:
             return img, target
-        return img, target
+        return img
 
     def __repr__(self):
         return self.__class__.__name__ + '(p={})'.format(self.p)
@@ -514,7 +514,7 @@ class RandomVerticalFlip(object):
 
         if target is not None:
             return img, target
-        return img, target
+        return img
 
     def __repr__(self):
         return self.__class__.__name__ + '(p={})'.format(self.p)
@@ -586,12 +586,10 @@ class RandomResizedCrop(object):
         Returns:
             PIL Image: Randomly cropped and resized image(s).
         """
-        if target is not None:
-            i, j, h, w = self.get_params(img, self.scale, self.ratio)
+	i, j, h, w = self.get_params(img, self.scale, self.ratio)
+        if target is not None:            
             return F.resized_crop(img, i, j, h, w, self.size, self.interpolation), \
                    F.resized_crop(target, i, j, h, w, self.size, self.interpolation_tg)
-
-        i, j, h, w = self.get_params(img, self.scale, self.ratio)
         return F.resized_crop(img, i, j, h, w, self.size, self.interpolation)
 
     def __repr__(self):
