@@ -309,7 +309,7 @@ class RandomCrop(object):
                 target = F.pad(target, self.padding)
 
         i, j, h, w = self.get_params(img, self.size)
-
+        print(i, j, h, w)
         if target is not None:
             return F.crop(img, i, j, h, w), F.crop(target, i, j, h, w)
         else:
@@ -427,9 +427,9 @@ class RandomResizedCrop(object):
         Returns:
             PIL Image: Randomly cropped and resize image(s).
         """
-	i, j, h, w = self.get_params(img, self.scale, self.ratio)
-        if target is not None:    
-            return F.resized_crop(img, i, j, h, w, self.size, self.interpolation), \
+        i, j, h, w = self.get_params(img, self.scale, self.ratio)
+        if target is not None:
+            return F.resized_crop(img, i,j, h, w, self.size, self.interpolation), \
                    F.resized_crop(target, i, j, h, w, self.size, self.interpolation_tg)
         return F.resized_crop(img, i, j, h, w, self.size, self.interpolation)
 

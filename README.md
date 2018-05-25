@@ -10,7 +10,7 @@ When performing data augmentation in dense pixel-wise prediction tasks we typica
 way the input image and the ground-truth. The [recommended way](https://github.com/pytorch/vision/releases/tag/v0.2.0) 
 for dealing with this requires to handle these paired transforms in the training part of your code.
 
-The files `paired_transforms_pt03.py` and `paired_transforms_pt04.py` in this repo contains suitably modified classes 
+The files `paired_transforms_pt03.py` and `paired_transforms_pt04.py` in this repo contain suitably modified classes 
 so that the user does not need to take care of this:
 * If a transform is called with two inputs it will transform both in the same way automatically. 
 * If a transform is called with only one input, the behavior of the several classes will 
@@ -24,17 +24,22 @@ This means that you can use this as a plug-and-play extension, *e.g.* replacing:
  
  `import paired_ransforms_pt04 as tr`
  
- Please see the notebooks `paired_transforms_pytorch0.3.ipynb` and `paired_transforms_pytorch0.4.ipynb` for an example of 
- how the original implementation was modified, and `paired_transforms_examples_pytorch0.3.ipynb`, 
- `paired_transforms_examples_pytorch0.4.ipynb` for examples of all the transforms that were modified. I am also including 
+ Please see the notebooks 
+ [`paired_transforms_pytorch0.3.ipynb`](http://nbviewer.jupyter.org/github/agaldran/torchvision_paired_transforms/blob/master/paired_transforms_examples_pytorch0.3.ipynb) 
+ and [`paired_transforms_pytorch0.4.ipynb`](http://nbviewer.jupyter.org/github/agaldran/torchvision_paired_transforms/blob/master/paired_transforms_examples_pytorch0.4.ipynb) 
+ for an example of 
+ how the original implementation was modified, and 
+ [`paired_transforms_examples_pytorch0.3.ipynb`](http://nbviewer.jupyter.org/github/agaldran/torchvision_paired_transforms/blob/master/paired_transforms_pytorch0.3.ipynb), 
+ [`paired_transforms_examples_pytorch0.4.ipynb`](http://nbviewer.jupyter.org/github/agaldran/torchvision_paired_transforms/blob/master/paired_transforms_pytorch0.4.ipynb) 
+ for examples of all the transforms that were modified. I am also including 
 an example of how to build a `PyTorch` dataset and dataloader using paired transforms.
 
- Below you can find a visual example.
+ Below you can find a visual example, while also meeting Luppo and More, who are part of my family.
  
 ---------------------------------------
 
-Retinal Image and associated ground-truth, useful for the task of classifying retinal 
-vessels into arteries and veins:
+An image of Luppo and More happily sitting in their basket, useful for the task of segmenting 
+charismatic dogs and charismatic cats from the background:
 
 ![](images/original.png)
 
